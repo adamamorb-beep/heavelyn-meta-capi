@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const order = req.body;
 
   const PIXEL_ID = "896219036373911";
-  const ACCESS_TOKEN = "PASTE_YOUR_ACCESS_TOKEN_HERE";
+  const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 
   const payload = {
     data: [
