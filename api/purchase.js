@@ -26,10 +26,10 @@ export default async function handler(req, res) {
       custom_data: {
         currency: order.currency,
         value: parseFloat(order.total_price),
-      },
-      test_event_code: "TEST42215"
+      }
     },
   ],
+  test_event_code: "TEST42215"
 };
 
   try {
