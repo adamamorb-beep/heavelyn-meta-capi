@@ -31,7 +31,6 @@ export default async function handler(req, res) {
     },
   ],
 };
-  };
 
   try {
     const response = await fetch(
