@@ -6,7 +6,8 @@ module.exports = async (req, res) => {
   }
 
   const order = req.body;
-
+const ip = req.headers["x-forwarded-for"]?.split(",")[0];
+const userAgent = req.headers["user-agent"];
   const PIXEL_ID = "593570292256281"; // your real pixel ID
   const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 
@@ -18,13 +19,15 @@ module.exports = async (req, res) => {
         action_source: "website",
         event_source_url: order.order_status_url,
         user_data: {
-          em: order.email
-            ? crypto
-                .createHash("sha256")
-                .update(order.email.trim().toLowerCase())
-                .digest("hex")
-            : undefined,
-        },
+  em: order.email
+    ? crypto
+        .createHash("sha256")
+        .update(order.email.trim().toLowerCase())
+        .digest("hex")
+    : undefined,
+  client_ip_address: ip,
+  client_user_agent: userAgent
+},
         custom_data: {
           currency: order.currency,
           value: parseFloat(order.total_price),
