@@ -30,7 +30,7 @@ const userAgent = req.headers["user-agent"];
         event_time: Math.floor(Date.now() / 1000),
         action_source: "website",
         event_source_url: order.order_status_url,
-        user_data: {
+       user_data: {
   em: order.email
     ? crypto
         .createHash("sha256")
@@ -38,7 +38,8 @@ const userAgent = req.headers["user-agent"];
         .digest("hex")
     : undefined,
   client_ip_address: ip,
-  client_user_agent: userAgent
+  client_user_agent: userAgent,
+  fbc: fbc
 },
         custom_data: {
           currency: order.currency,
