@@ -31,7 +31,6 @@ module.exports = async (req, res) => {
         },
       },
     ],
-    test_event_code: "TEST42215" // your Meta test code
   };
 
   try {
