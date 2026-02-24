@@ -6,6 +6,18 @@ module.exports = async (req, res) => {
   }
 
   const order = req.body;
+  let fbc;
+
+if (order.note_attributes && Array.isArray(order.note_attributes)) {
+  const fbclidAttr = order.note_attributes.find(
+    attr => attr.name === "fbclid"
+  );
+
+  if (fbclidAttr && fbclidAttr.value) {
+    const timestamp = Math.floor(Date.now() / 1000);
+    fbc = `fb.1.${timestamp}.${fbclidAttr.value}`;
+  }
+}
 const ip = req.headers["x-forwarded-for"]?.split(",")[0];
 const userAgent = req.headers["user-agent"];
   const PIXEL_ID = "593570292256281"; // your real pixel ID
