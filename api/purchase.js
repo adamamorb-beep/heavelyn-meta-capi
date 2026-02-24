@@ -42,7 +42,8 @@ export default async function handler(req, res) {
     );
 
     const result = await response.json();
-    return res.status(200).json(result);
+console.log("META RESPONSE:", result);
+return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
