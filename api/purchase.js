@@ -8,27 +8,29 @@ export default async function handler(req, res) {
   const PIXEL_ID = "593570292256281";
   const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 
-  const payload = {
-    data: [
-      {
-        event_name: "Purchase",
-        event_time: Math.floor(Date.now() / 1000),
-        action_source: "website",
-        event_source_url: order.order_status_url,
-        user_data: {
-          em: order.email
-            ? require("crypto")
-                .createHash("sha256")
-                .update(order.email.trim().toLowerCase())
-                .digest("hex")
-            : undefined,
-        },
-        custom_data: {
-          currency: order.currency,
-          value: parseFloat(order.total_price),
-        },
+ const payload = {
+  data: [
+    {
+      event_name: "Purchase",
+      event_time: Math.floor(Date.now() / 1000),
+      action_source: "website",
+      event_source_url: order.order_status_url,
+      user_data: {
+        em: order.email
+          ? require("crypto")
+              .createHash("sha256")
+              .update(order.email.trim().toLowerCase())
+              .digest("hex")
+          : undefined,
       },
-    ],
+      custom_data: {
+        currency: order.currency,
+        value: parseFloat(order.total_price),
+      },
+      test_event_code: "TEST42215"
+    },
+  ],
+};
   };
 
   try {
