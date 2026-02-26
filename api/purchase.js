@@ -18,6 +18,17 @@ if (order.note_attributes && Array.isArray(order.note_attributes)) {
     fbc = `fb.1.${timestamp}.${fbclidAttr.value}`;
   }
 }
+  let eventId;
+
+if (order.note_attributes && Array.isArray(order.note_attributes)) {
+  const eventIdAttr = order.note_attributes.find(
+    attr => attr.name === "event_id"
+  );
+
+  if (eventIdAttr && eventIdAttr.value) {
+    eventId = eventIdAttr.value;
+  }
+}
 const ip = req.headers["x-forwarded-for"]?.split(",")[0];
 const userAgent = req.headers["user-agent"];
   const PIXEL_ID = "593570292256281"; // your real pixel ID
