@@ -39,6 +39,7 @@ const userAgent = req.headers["user-agent"];
       {
         event_name: "Purchase",
         event_time: Math.floor(Date.now() / 1000),
+        event_id: eventId,
         action_source: "website",
         event_source_url: order.order_status_url,
        user_data: {
